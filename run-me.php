@@ -7,4 +7,4 @@ $tasks[] = new DemoTaskA();
 $tasks[] = new DemoTaskB("B1");
 $tasks[] = new DemoTaskB("B2");
 
-$server = new ThreadServer($tasks);
+$server = new ThreadServer($tasks, "Thread Server process name");
