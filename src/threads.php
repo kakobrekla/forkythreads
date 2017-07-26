@@ -32,7 +32,12 @@ class Task{
 
 class ThreadServer{
 
-    function __construct($tasks){
+    function __construct($tasks, $process_title = false){
+
+        if($process_title){
+          cli_set_process_title("php-cli " . $process_title);
+        }
+
         pcntl_signal(SIGTERM, array($this, "exitHandler"));
         pcntl_signal(SIGINT, array($this, "exitHandler"));
         pcntl_signal(SIGHUP, array($this, "exitHandler"));
