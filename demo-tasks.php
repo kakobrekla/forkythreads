@@ -14,6 +14,7 @@ class DemoTaskB extends Task {
     }
 
     function _onInit(){
+        cli_set_process_title("php-cli DemoTaskB name");
         $this->printCLI("Starting.");
     }
 
