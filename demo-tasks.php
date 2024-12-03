@@ -1,34 +1,42 @@
 <?php
 
-class DemoTaskA extends Task{
- //default empty task just sleeps
+class DemoTaskA extends Task
+{
+    // Default empty task that just sleeps
 }
 
+class DemoTaskB extends Task
+{
+    private $foo;
 
-class DemoTaskB extends Task {
-
-    var $foo;
-
-    function __construct($param){
+    public function __construct($param)
+    {
         $this->foo = $param;
     }
 
-    function _onInit(){
+    public function _onInit()
+    {
+        // Set process title for the task
         cli_set_process_title("php-cli DemoTaskB name");
         $this->printCLI("Starting.");
     }
 
-    function _onExit(){
+    public function _onExit()
+    {
         $this->printCLI("Exit.");
     }
 
-    function _loop(){
+    public function _loop()
+    {
+        // Randomly select a duration between 1 and 5 seconds
         $duration = array_rand(array_fill(1, 5, 0));
-        $this->printCLI("foo is $this->foo, im going afk for $duration seconds");
+        $this->printCLI("foo is $this->foo, I'm going AFK for $duration seconds.");
         $this->_nap($duration);
     }
 
-    function printCLI($line){
-        print("[".date("Y-m-d H:i:s")."] (".getmypid().") ". __CLASS__ .": $line \n");
+    private function printCLI(string $line)
+    {
+        // Print formatted log message with timestamp and process ID
+        print("[" . date("Y-m-d H:i:s") . "] (" . getmypid() . ") " . __CLASS__ . ": $line\n");
     }
 }
